@@ -73,7 +73,7 @@
       │  	├───index.wxml	  // index 页面结构
       │  	└───index.wxss	  // index 页面样式表
       ├───category			// 这里按四个主页面建立四个文件夹
-      ├───buy					// 每个文件夹中都包含与文件夹同名的wxml,wxss,js,json四个文件
+      ├───buy				// 每个文件夹中都包含与文件夹同名的wxml,wxss,js,json四个文件
       └───user
   ```
 
