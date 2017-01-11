@@ -45,12 +45,12 @@
   ├───app.json				// 小程序公共设置
   ├───app.wxss				// 小程序公共样式
   ├───utils					// 用来放置工具类js文件
-  │   └───utils.js			// 工具类js
+  │   └───utils.js		// 工具类js
   └───pages					// 项目页面开发目录，里面的每个子目录代表一个独立页面
       ├───index				// index 页面目录
-      │   ├───index.js		// index 页面逻辑
-      │  	├───index.wxml		// index 页面结构
-      │  	└───index.wxss		// index 页面样式表
+      │   ├───index.js	// index 页面逻辑
+      │  	├───index.wxml	// index 页面结构
+      │  	└───index.wxss	// index 页面样式表
       └───logs				// logs 页面目录
       	├───logs.js			// logs 页面逻辑
       	├───logs.json		// logs 页面设置
