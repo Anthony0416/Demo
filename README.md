@@ -189,29 +189,32 @@
 
 
 - js这里也和Vue有挺大的出入，在逻辑中，this代表page，所以如果想要获取data中的数据，需要this.data.nav。如果这里直接使用this.data.nav可以改变nav的值，但是不会将数据发送到视图层，即页面不会随着数据的变化而改变，所以这里需要用到另外的函数this.setData()实时改变页面状态，保持视图层和逻辑层的数据一致。
-- 其次在使用 “ wx:for ” 循环的时候，开发者工具会给出一个警告 “Now you can provide attr "wx:key" for a "wx:for" to improve performance.” ，关于这个 “ wx:key ” 官方API有详细说明，这里不多做解释，但是提醒一下，不恰当的使用 wx:key 会有不好的影响。https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html?t=2017112
+
+- 其次在使用 “ wx:for ” 循环的时候，开发者工具会给出一个警告 “Now you can provide attr "wx:key" for a "wx:for" to improve performance.” ，关于这个 “ wx:key ” 官方API有详细说明，这里不多做解释，但是提醒一下，不恰当的使用 wx:key 会有不好的影响。
+
+  https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html?t=2017112
 
 #### Banner轮播图
 
+Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基本就能满足我们的需求，但是这里有几点需要特别注意。
 
-- Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基本就能满足我们的需求，但是这里有几点需要特别注意。
+1. swpier自带很多属性，这些属性大都有一个默认值，在使用前要多参照官方Api文档熟悉这些属性的默认值；
 
-  1. swpier自带很多属性，这些属性大都有一个默认值，在使用前要多参照官方Api文档熟悉这些属性的默认值；
+2. Banner图尽量使用在线图片，因为小程序的代码有1M的大小限制，大量图片会占用过多的空间；
 
-  2. swiper组件官方默认有一个 " display: block; height: 150px; "  的样式，大多情况下我们都需要在wxss中根据自己的需要重置这个样式；
+3. swiper组件官方默认有一个 " display: block; height: 150px; "  的样式，大多情况下我们都需要在wxss中根据自己的需要重置这个样式；
 
-  3. image组件也同样有一个如下的默认值，这里也需要根据需求手动重置。
+4. image组件也同样有一个如下的默认值，这里也需要根据需求手动重置。
 
-     > ```
-     > image {
-     > width:320px;
-     > height:240px;
-     > display:inline-block;
-     > overflow:hidden;
-     > }
-     > ```
+   > ```
+   > image {
+   > width:320px;
+   > height:240px;
+   > display:inline-block;
+   > overflow:hidden;
+   > }
+   > ```
 
-  ​
 
-  ​
 
+​
