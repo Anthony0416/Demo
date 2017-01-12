@@ -19,9 +19,9 @@
 ### 推荐一些优秀的小程序
 
 > 这两款是目前我看到的做的十分不错的小程序，最大限度的接近原生App的效果，功能也是十分全面，所以在这里推荐大家体验一下
-> ![wwz](imgs/MdImgs/wwz.jpg)
+> ![wwz](MdImgs/wwz.jpg)
 >
-> ![elm](imgs/MdImgs/elm.jpg)
+> ![elm](MdImgs/elm.jpg)
 
 ## 构建自己的第一个小程序
 
@@ -31,13 +31,13 @@
 
 - 点击添加项目 -->  填写AppID(没有可以选择无AppID)  -->  填写项目名称  -->  选择项目目录(新项目路径选择一个空的文件夹)，此时项目目录下方会出现一个创建quick start项目的选项，这里可以快速帮你构建一个项目的完整目录，不建议取消勾选。确认无误就可以添加项目了。 
 
-  ![2](imgs/MdImgs/2.jpg)
+  ![2](MdImgs/2.jpg)
 
 
 
 - 此时你会看到开发者工具已经帮你建好了一些目录并有了一个简单的页面，我们先来梳理一下小程序的路径。
 
-  ![3](imgs/MdImgs/3.jpg)
+  ![3](MdImgs/3.jpg)
 
   ```
   ├───app.js				// 小程序逻辑
@@ -83,12 +83,14 @@
   >
   > 2. 小程序中新增/减少页面，都需要对 pages 数组进行修改，特别的，如果减少页面但是未修改pages的数组，编译会抛出异常
   >
-  > 3. 在这里修改数组后框架会自行去寻找路径中的文件，如果路径中的json文件为空的话，会抛出异常
-  >
-  >    ```
+  > 3. 在这里修改数组后框架会自行去寻找路径中的文件，如果路径中的json文件内容为空的话，会抛出异常
+  >      ```
   >    Expecting 'STRING','NUMBER','NULL','TRUE','FALSE','{','[', got EOF
   >        | ^
-  >    ```
+  >      ```
+  > 4. 同样的，路径中js为空也会抛出“Page调用异常”的错误，所以要在js中加入“Page({})”
+  >
+
 
   ```
   "pages":[
@@ -141,12 +143,75 @@
 
 - json文件配置好之后保存一下，左侧的页面会自动刷新，便于开发者调试。
 
-  ![4](imgs/MdImgs/4.jpg)
+  ![4](MdImgs/4.jpg)
 
 
 
 
 ### 开始正式编写小程序
 
+#### 顶部导航栏
 
+- 在这里我花费了很多时间，官方文档中提供了一个 navigator 作为导航，但试了下发现这个只能相当于html的a标签，其提供的参数并不能满足我们的需求(页面需求为顶部导航栏点击页面数据刷新，并非页面跳转)，因为在小程序的逻辑中，除了之前在 app.json  "tabBar" 中声明的页面之外，其他页面的跳转都会覆盖到底部导航栏。后来我决定使用wx:if条件渲染来做数据的显示和隐藏。
+
+- 先做导航栏，最开始受到 Vue 的影响，试图使用类似于 :class 这样的代码来做点击的效果，然而官方并没有这个 Api，唯一的一个 wx:if 控制的是整个模块，所以后来采用曲线救国的方式倒也是成功了。
+
+  代码如下：
+
+  ```
+  //==========index.wxml============//
+  <view class="index_nav">
+    <view wx:for="{{nav}}" id="{{index}}" class="nav_text" bindtap="indexNav">
+      <text>{{item.title}}</text>
+      <view wx:if="{{tap == index}}" id="{{index}}" class="choosed"></view>
+    </view>
+  </view>
+  //============index.js=============//
+  Page({
+    data: {
+      nav: [{
+        title: "首页"
+      },{
+        title: "最新"
+      },{
+        title: "最热"
+      }],
+      tap: 0
+    },
+    //事件处理函数
+    indexNav: function (e) {
+      this.setData({
+        tap: e.currentTarget.id
+      });
+    }
+  })
+  ```
+
+
+- js这里也和Vue有挺大的出入，在逻辑中，this代表page，所以如果想要获取data中的数据，需要this.data.nav。如果这里直接使用this.data.nav可以改变nav的值，但是不会将数据发送到视图层，即页面不会随着数据的变化而改变，所以这里需要用到另外的函数this.setData()实时改变页面状态，保持视图层和逻辑层的数据一致。
+- 其次在使用 “ wx:for ” 循环的时候，开发者工具会给出一个警告 “Now you can provide attr "wx:key" for a "wx:for" to improve performance.” ，关于这个 “ wx:key ” 官方API有详细说明，这里不多做解释，但是提醒一下，不恰当的使用 wx:key 会有不好的影响。https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html?t=2017112
+
+#### Banner轮播图
+
+
+- Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基本就能满足我们的需求，但是这里有几点需要特别注意。
+
+  1. swpier自带很多属性，这些属性大都有一个默认值，在使用前要多参照官方Api文档熟悉这些属性的默认值；
+
+  2. swiper组件官方默认有一个 " display: block; height: 150px; "  的样式，大多情况下我们都需要在wxss中根据自己的需要重置这个样式；
+
+  3. image组件也同样有一个如下的默认值，这里也需要根据需求手动重置。
+
+     > ```
+     > image {
+     > width:320px;
+     > height:240px;
+     > display:inline-block;
+     > overflow:hidden;
+     > }
+     > ```
+
+  ​
+
+  ​
 

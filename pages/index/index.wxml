@@ -1,10 +1,16 @@
 <!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<view class="index_nav">
+  <view wx:for="{{nav}}" id="{{index}}" class="nav_text" bindtap="indexNav">
+    <text>{{item.title}}</text>
+    <view wx:if="{{tap == index}}" id="{{index}}" class="choosed"></view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+</view>
+<view class="index_content" wx:if="{{tap == 0}}">
+  <swiper class="index_swiper" indicator-dots="true" autoplay="true" >
+    <swiper-item wx:for="{{banner}}">
+      <navigator url="#">
+        <image class="swiper_image" src="{{item.image}}"></image>
+      </navigator>
+    </swiper-item>
+  </swiper>
 </view>
