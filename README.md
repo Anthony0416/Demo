@@ -196,7 +196,18 @@
 
 #### Banner轮播图
 
-Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基本就能满足我们的需求，但是这里有几点需要特别注意。
+Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基本就能满足我们的需求。
+
+```
+<swiper class="index_swiper" indicator-dots="true" autoplay="true" >
+    <swiper-item wx:for="{{banner}}">
+      <navigator url="{{item.url}}">
+        <image class="swiper_image" src="{{item.image}}"></image>
+      </navigator>
+    </swiper-item>
+  </swiper>
+```
+这里有几点需要特别注意：
 
 1. swpier自带很多属性，这些属性大都有一个默认值，在使用前要多参照官方Api文档熟悉这些属性的默认值；
 
@@ -204,7 +215,7 @@ Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基
 
 3. swiper组件官方默认有一个 " display: block; height: 150px; "  的样式，大多情况下我们都需要在wxss中根据自己的需要重置这个样式；
 
-4. image组件也同样有一个如下的默认值，这里也需要根据需求手动重置。
+4. image组件也同样有一个如下的默认样式，这里也需要根据需求手动重置。
 
    > ```
    > image {
@@ -216,5 +227,14 @@ Banner图在小程序中是比较好处理的，官方给出的 swiper 组件基
    > ```
 
 
+#### 主页其他部分
 
-​
+再往下的部分只是一些简单的静态部分，而且这里wxss的语法同css语法一致，有前端开发经验的一定不陌生，把页面排列整齐美观即可，所用到的大都是view，text，image，navigator这些，小程序并没有给出前端常见的ul li 所以这里一般都是直接使用 view 标签 wx:for  循环。前端开发人员一定对base.css不会陌生，小程序这里如果想要定义全局默认样式，可以在根目录的app.wxss中定义：
+
+```
+view,text {
+  font-family: "微软雅黑";
+  font-size: 24rpx;
+  color: #999;
+}
+```

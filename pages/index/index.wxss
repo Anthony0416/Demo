@@ -16,16 +16,16 @@
   width: 9%;
   margin: 5rpx 12%;
   text-align: center;
-  color: #999;
 }
 /*点击效果*/
 .choosed {
   border-bottom: 5rpx solid #999;
 }
-/*===============index内容=================*/
-.index_content {
+/*==============内容区公共样式================*/
+.content {
   padding-top: 60rpx;
 }
+/*===============index内容=================*/
 /*轮播图*/
 .index_swiper {
   height: 400rpx;
@@ -33,4 +33,29 @@
 .swiper_image {
   width: 750rpx;
   height: 400rpx;
+}
+/*分区*/
+.part {
+  width: 95%;
+  margin: 30rpx auto 0;
+}
+.part_item {
+  width: 25%;
+  height: 200rpx;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center
+}
+.part_image {
+  border-radius: 50%;
+  border: 2rpx solid #ddd;
+  width: 150rpx;
+  height: 150rpx;
+  display: block;
+  margin: 0 auto;
+}
+.part_text {
+  display: block; 
+  font-size: 24rpx;
+  margin-top: 10rpx;
 }

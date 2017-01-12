@@ -1,16 +1,38 @@
-<!--index.wxml-->
+<!--首页头部导航-->
 <view class="index_nav">
   <view wx:for="{{nav}}" id="{{index}}" class="nav_text" bindtap="indexNav">
     <text>{{item.title}}</text>
     <view wx:if="{{tap == index}}" id="{{index}}" class="choosed"></view>
   </view>
 </view>
-<view class="index_content" wx:if="{{tap == 0}}">
+<!--首页内容开始-->
+<view class="content" wx:if="{{tap == 0}}">
+  <!--banner-->
   <swiper class="index_swiper" indicator-dots="true" autoplay="true" >
     <swiper-item wx:for="{{banner}}">
-      <navigator url="#">
+      <navigator url="{{item.url}}">
         <image class="swiper_image" src="{{item.image}}"></image>
       </navigator>
     </swiper-item>
   </swiper>
+  <!--分区-->
+  <view class="part">
+    <view wx:for="{{part}}" class="part_item">
+      <navigator url="{{item.url}}">
+        <image class="part_image" src="{{item.image}}"></image>
+        <text class="part_text">{{item.title}}</text>
+      </navigator>
+    </view>
+  </view>
 </view>
+<!--首页内容结束-->
+<!--最新内容开始-->
+<view class="content" wx:if="{{tap == 1}}">
+  <text>最新</text>
+</view>
+<!--最新内容结束-->
+<!--最热内容开始-->
+<view class="content" wx:if="{{tap == 2}}">
+  <text>最热</text>
+</view>
+<!--最热内容结束-->
