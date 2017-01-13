@@ -56,6 +56,47 @@ Page({
       title: "文房四宝",
       image: "../../imgs/banner.jpg",
       url: "jump/jump"
+    }],
+    new: [{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
     }]
   },
   //事件处理函数

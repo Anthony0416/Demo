@@ -28,7 +28,12 @@
 <!--首页内容结束-->
 <!--最新内容开始-->
 <view class="content" wx:if="{{tap == 1}}">
-  <text>最新</text>
+  <import src="../../template/productCard/productCard.wxml" />
+  <view>
+    <block wx:for="{{new}}">
+      <template>
+    </block>
+  </view>
 </view>
 <!--最新内容结束-->
 <!--最热内容开始-->
