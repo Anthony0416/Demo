@@ -58,7 +58,48 @@ Page({
       url: "jump/jump"
     }],
     new: [{
+      title: "asjncaskjdcuasdcdfgbsdfghsdhfsdfghsgdfhkjasdf",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
       title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    },{
+      title: "风骚小物",
+      image: "../../imgs/banner.jpg",
+      url: "jump/jump",
+      price: "123"
+    }],
+    hot: [{
+      title: "asjncasdf",
       image: "../../imgs/banner.jpg",
       url: "jump/jump",
       price: "123"
@@ -99,10 +140,19 @@ Page({
       price: "123"
     }]
   },
-  //事件处理函数
+  //导航切换事件
   indexNav: function (e) {
     this.setData({
       tap: e.currentTarget.id
     });
+    console.log(scrollTo);
+    scrollTo(0)
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '玩物志',
+      desc: '新生活必需品',
+      path: '/page/index'
+    }
   }
 })

@@ -1,4 +1,4 @@
-# 小程序
+# 微信小程序
 
 ## 一些准备工作
 
@@ -247,10 +247,105 @@ view,text {
 
 - ##### 定义template模板
 
-  这里我现在template目录下新建一个productCard文件夹，并在文件夹中新建productCard.wxml和productCard.wxss文件。
+  这里我先在template目录下新建一个productCard文件夹，并在文件夹中新建productCard.wxml和productCard.wxss文件作为模板的内容和样式，首先是wxml：
+
+  ```
+  <template name="productCard">
+    <view class="product_card">
+      <navigator url="{{url}}">
+        <image src="{{image}}" class="card_image"></image>
+        <text class="card_title">{{title}}</text>
+        <text class="card_price">¥{{price}}</text>
+      </navigator>
+    </view>
+  </template>
+  ```
+
+  代码简单明了，这里不多做介绍。然后是wxss：
+
+  ```
+  .product_card {
+    width: 320rpx;
+    height: 400rpx;
+    display: inline-block;
+    padding: 30rpx 37rpx 0 0
+  }
+  .card_image {
+    width: 320rpx;
+    height: 320rpx;
+  }
+  .card_title ,.card_price {
+    display: block;
+    font-size: 26rpx
+  }
+  .card_title {
+    width: 320rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+  ```
+
+  样式这里需要注意一点，text默认 display: inline  而在这里需要独占一行，故改为block。
+
 
 - ##### 引入template模板
 
+  模板写好了，在需要使用的地方引入并使用即可，这里不多说，直接贴代码：
+
+  ```
+    <!--引入模板文件-->
+    <import src="../../template/productCard/productCard.wxml" />
+    <view>
+      <!--模板循环-->
+      <block wx:for="{{new}}">
+        <!--模板使用及数据绑定 is为模板名字-->
+        <template is="productCard" data="{{...item}}"/>
+      </block>
+    </view>
+  ```
+
 - ##### template模板样式引入
 
+  模板wxss样式引入有两种方式，一是在目标页面的wxss头部引入，二是在根目录app.wxss文件头部引入，这里推荐第二种方法，可以实现一次引入，全局使用的效果。
+
+  ```
+  /*app.wxss*/
+  @import "./template/productCard/productCard.wxss";
+  ```
+
 - ##### template模板数据渲染
+
+  上文代码中细心的人会注意到虽然使用了 wx:for 循环，但是模板中的数据依然是 {{url}} 并非 {{item.url}} ，这是因为在`<template>`中使用了`data="{{...item}}"`的解构语法。而在一般的模板中，直接在data里填写js的数据名即可。
+
+#### 上拉加载
+
+| onReachBottom | Function | 页面上拉触底事件的处理函数 |
+| ------------- | -------- | ------------- |
+|               |          |               |
+
+
+
+
+
+
+
+
+
+#### 页面分享
+
+微信是一个社交平台，既然是社交就肯定会有分享。小程序在API中加入了页面分享，只需要在需要设置分享页面的js文件中加入如下代码，简单的配置即可实现分享效果：
+
+```
+Page ({
+  onShareAppMessage: function () {
+    return {
+      title: '分享标题',
+      desc: '分享描述',
+      path: '/page/index'    //当前页面path  必须以/开头的完整路径
+    }
+  }
+})
+```
+
+用户点击右上角按钮即可看到分享选项，小程序会自动生成一张分享图片，并附上定义好的标题和描述。注意分享图片不能自定义，系统会取当前页面，从顶部开始，高度为 80% 屏幕宽度的图像作为分享图片。

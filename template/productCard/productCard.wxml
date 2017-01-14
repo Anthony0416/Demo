@@ -1,9 +1,9 @@
 <template name="productCard">
   <view class="product_card">
     <navigator url="{{url}}">
-      <image src="{{image}}"></image>
-      <text>{{title}}</text>
-      <text>¥{{price}}</text>
+      <image src="{{image}}" class="card_image"></image>
+      <text class="card_title">{{title}}</text>
+      <text class="card_price">¥{{price}}</text>
     </navigator>
   </view>
 </template>

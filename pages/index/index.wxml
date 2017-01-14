@@ -27,17 +27,25 @@
 </view>
 <!--首页内容结束-->
 <!--最新内容开始-->
-<view class="content" wx:if="{{tap == 1}}">
+<view class="content part_card" wx:if="{{tap == 1}}">
+  <!--引入模板文件-->
   <import src="../../template/productCard/productCard.wxml" />
   <view>
+    <!--模板循环-->
     <block wx:for="{{new}}">
-      <template>
+      <!--模板使用及数据绑定-->
+      <template is="productCard" data="{{...item}}"/>
     </block>
   </view>
 </view>
 <!--最新内容结束-->
 <!--最热内容开始-->
-<view class="content" wx:if="{{tap == 2}}">
-  <text>最热</text>
+<view class="content part_card" wx:if="{{tap == 2}}">
+  <import src="../../template/productCard/productCard.wxml" />
+  <view>
+    <block wx:for="{{hot}}">
+      <template is="productCard" data="{{...item}}"/>
+    </block>
+  </view>
 </view>
 <!--最热内容结束-->

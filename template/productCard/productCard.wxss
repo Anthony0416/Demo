@@ -1,0 +1,25 @@
+.part_card{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0 0 37rpx
+}
+.product_card {
+  width: 320rpx;
+  height: 400rpx;
+  display: inline-block;
+  padding: 30rpx 37rpx 0 0
+}
+.card_image {
+  width: 320rpx;
+  height: 320rpx;
+}
+.card_title ,.card_price {
+  display: block;
+  font-size: 26rpx
+}
+.card_title {
+  width: 320rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
