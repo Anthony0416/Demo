@@ -146,13 +146,30 @@ Page({
       tap: e.currentTarget.id
     });
     console.log(scrollTo);
-    scrollTo(0)
+    scrollTo(0,0)
   },
+  // 设置页面分享
   onShareAppMessage: function () {
     return {
       title: '玩物志',
       desc: '新生活必需品',
       path: '/page/index'
     }
+  },
+  // 监听页面加载并作出响应
+  onLoad: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    })
+  },
+  // 监听页面加载完毕
+  onReady: function () {
+    wx.hideToast()
+  },
+  // 上拉加载数据
+  onReachBottom: function () {
+    
   }
 })
