@@ -170,6 +170,10 @@ Page({
   },
   // 上拉加载数据
   onReachBottom: function () {
-    
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 5000
+    })
   }
 })
