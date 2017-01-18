@@ -146,7 +146,7 @@ Page({
       tap: e.currentTarget.id
     });
     console.log(scrollTo);
-    scrollTo(0,0)
+    scroll-top(0)
   },
   // 设置页面分享
   onShareAppMessage: function () {
