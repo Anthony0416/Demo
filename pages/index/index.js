@@ -144,9 +144,7 @@ Page({
   indexNav: function (e) {
     this.setData({
       tap: e.currentTarget.id
-    });
-    console.log(scrollTo);
-    scroll-top(0)
+    })
   },
   // 设置页面分享
   onShareAppMessage: function () {
